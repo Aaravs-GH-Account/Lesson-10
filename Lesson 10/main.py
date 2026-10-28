@@ -97,3 +97,57 @@ while playing:
             text1=myFont.render('Bin loot unsuccessful. Better luck next time!',True,BLACK)
 
         screen.blit(text1,(250,40))
+
+    else:
+        change_background()
+        countdown=myFont.render("Time Left:"+ str(60 - int(time_elapse)), True, BLACK)
+        screen.blit(countdown,(10,20))
+
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_UP]:
+            if bin.rect.y >0:
+                bin.rect.y-=5
+
+        if keys[pygame.K_DOWN]:
+            if bin.rect.y <screen_height:
+                bin.rect.y+=5
+
+        if keys[pygame.K_RIGHT]:
+            if bin.rect.x <screen_width:
+                bin.rect.x+=5
+
+        if keys[pygame.K_LEFT]:
+            if bin.rect.x >0:
+                bin.rect.x-=5
+
+        item_hit_list=pygame.sprite.spritecollide(bin, item_list, True)
+        for item in item_hit_list:
+            score +=1
+            text = myFont.render("Score = " + str(score), True, BLACK)
+
+        plastic_hit_list=pygame.sprite.spritecollide(bin, plastic_list, True)
+        for plastic in plastic_hit_list:
+            score -=5
+            text = myFont.render('Score = ' + str(score), True, BLACK)
+
+    screen.blit(text,(20,50))
+    allsprites.draw(screen)
+    pygame.display.update()
+
+pygame.quit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
