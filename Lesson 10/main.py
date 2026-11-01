@@ -30,6 +30,7 @@ class Recyclable(pygame.sprite.Sprite):
         self.rect=self.image.get_rect()
 
 class Non_recyclable(pygame.sprite.Sprite):
+    
     def __init__(self):
         super().__init__()
 
